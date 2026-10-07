@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="jv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Observasi Pulau Merah — Basa Jawa</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:system-ui,-apple-system,Segoe UI,sans-serif;
+      background:#07111f;color:#eef6ff;line-height:1.75;
+      overflow-x:hidden;
+    }
+    :root{
+      --cyan:#5ee7ff;--blue:#2d7dff;--pink:#ff6b8a;
+      --glass:rgba(255,255,255,.08);--border:rgba(255,255,255,.14);
+    }
+    body:before{
+      content:"";position:fixed;inset:0;z-index:-2;
+      background:
+        radial-gradient(circle at 15% 15%,rgba(45,125,255,.25),transparent 28%),
+        radial-gradient(circle at 85% 25%,rgba(255,107,138,.18),transparent 25%),
+        linear-gradient(160deg,#07111f,#0b1b2e 55%,#07111f);
+    }
+    header{
+      min-height:100vh;display:flex;align-items:center;justify-content:center;
+      padding:35px 18px;position:relative;overflow:hidden;
+    }
+    header:after{
+      content:"";position:absolute;inset:0;
+      background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.72));
+      z-index:-1;
+    }
+    .hero-bg{
+      position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+      z-index:-2;opacity:.48;filter:saturate(1.15);
+    }
+    .hero{max-width:1050px;width:100%;text-align:center}
+    .badge{
+      display:inline-block;padding:7px 14px;border:1px solid var(--border);
+      background:rgba(255,255,255,.08);border-radius:999px;
+      backdrop-filter:blur(10px);font-size:.85rem;color:#d9f8ff;
+    }
+    h1{
+      font-size:clamp(2.8rem,8vw,6.8rem);line-height:1;
+      margin:22px 0 18px;letter-spacing:-.06em;
+      text-shadow:0 10px 40px rgba(0,0,0,.55);
+    }
+    .gradient{
+      background:linear-gradient(90deg,var(--cyan),#fff,var(--pink));
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+    }
+    .hero p{max-width:720px;margin:auto;color:#d3e5f4;font-size:1.08rem}
+    .btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+    .btn{
+      text-decoration:none;color:#fff;padding:12px 19px;border-radius:14px;
+      border:1px solid var(--border);background:var(--glass);
+      backdrop-filter:blur(12px);transition:.25s;
+    }
+    .btn.primary{background:linear-gradient(135deg,#2d7dff,#775cff);border:0}
+    .btn:hover{transform:translateY(-3px)}
+    nav{
+      position:sticky;top:0;z-index:20;padding:10px 14px;
+      background:rgba(5,13,24,.72);backdrop-filter:blur(18px);
+      border-bottom:1px solid var(--border);
+    }
+    .nav-inner{max-width:1150px;margin:auto;display:flex;gap:8px;overflow:auto}
+    nav a{
+      color:#cfe1ef;text-decoration:none;padding:8px 12px;border-radius:10px;
+      white-space:nowrap;font-size:.9rem;
+    }
+    nav a:hover{background:rgba(255,255,255,.1);color:white}
+    main{max-width:1150px;margin:auto;padding:30px 18px 80px}
+    section{padding:70px 0}
+    .section-title{margin-bottom:28px}
+    .eyebrow{color:var(--cyan);text-transform:uppercase;letter-spacing:.15em;font-size:.78rem}
+    h2{font-size:clamp(2rem,5vw,3.4rem);line-height:1.15;margin-top:7px}
+    .lead{color:#b9ccdc;max-width:820px}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+    .card{
+      background:var(--glass);border:1px solid var(--border);border-radius:22px;
+      padding:24px;backdrop-filter:blur(14px);
+      box-shadow:0 18px 50px rgba(0,0,0,.16);
+    }
+    .card h3{margin-bottom:10px;color:#fff}
+    .card p{color:#c4d5e3}
+    .members{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+    .member{text-align:center}
+    .member img{
+      width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:18px;
+      border:1px solid var(--border);background:#122236;
+    }
+    .member h3{margin-top:12px;margin-bottom:2px}
+    .member small{color:#9fb5c8}
+    .photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .photo{
+      position:relative;overflow:hidden;border-radius:20px;border:1px solid var(--border);
+      min-height:260px;background:#122236;
+    }
+    .photo img{width:100%;height:100%;object-fit:cover;display:block;transition:.5s}
+    .photo:hover img{transform:scale(1.06)}
+    .photo span{
+      position:absolute;left:12px;bottom:12px;padding:6px 10px;border-radius:10px;
+      background:rgba(0,0,0,.55);backdrop-filter:blur(8px);font-size:.8rem
+    }
+    .facts{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px}
+    .fact{padding:18px;border-radius:17px;background:rgba(255,255,255,.06);border:1px solid var(--border)}
+    .fact strong{display:block;font-size:1.3rem;color:var(--cyan)}
+    .quote{
+      margin-top:24px;padding:25px;border-left:4px solid var(--pink);
+      background:rgba(255,107,138,.07);border-radius:0 18px 18px 0;color:#dceaf5
+    }
+    footer{text-align:center;padding:35px 18px;color:#91a9bd;border-top:1px solid var(--border)}
+    .source{font-size:.78rem;color:#7890a5;margin-top:8px}
+    @media(max-width:850px){
+      .members{grid-template-columns:repeat(2,1fr)}
+      .facts{grid-template-columns:repeat(2,1fr)}
+      .photo-grid{grid-template-columns:1fr 1fr}
+    }
+    @media(max-width:600px){
+      .grid,.photo-grid{grid-template-columns:1fr}
+      section{padding:52px 0}
+      .card{padding:19px}
+      h1{font-size:3.25rem}
+    }
+  </style>
+</head>
+<body>
+
+<header id="beranda">
+  <img class="hero-bg" src="https://cdn1.tripoto.com/media/filter/nl/img/2380291/Image/1703250966_15267816168_aafda7df22_b.jpg.webp" alt="Pantai Pulau Merah">
+  <div class="hero">
+    <span class="badge">Tugas Observasi Basa Jawa • Kelas IX</span>
+    <h1><span class="gradient">PULAU MERAH</span></h1>
+    <p>
+      Laporan asil observasi ngenani kaendahan alam, lokasi, sejarah,
+      kegiatan wisata, lan paedah Pulau Merah ing Kabupaten Banyuwangi.
+    </p>
+    <div class="btns">
+      <a class="btn primary" href="#anggota">Deleng Anggota</a>
+      <a class="btn" href="#observasi">Maca Observasi</a>
+    </div>
+  </div>
+</header>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#beranda">Beranda</a>
+    <a href="#anggota">Anggota</a>
+    <a href="#profil">Profil</a>
+    <a href="#observasi">Observasi</a>
+    <a href="#kegiatan">Kegiatan</a>
+    <a href="#galeri">Galeri</a>
+    <a href="#kesimpulan">Kesimpulan</a>
+  </div>
+</nav>
+
+<main>
+  <section id="anggota">
+    <div class="section-title">
+      <div class="eyebrow">Kaca 01 • Identitas</div>
+      <h2>Anggota Kelompok</h2>
+      <p class="lead">Ganti jeneng lan foto ing ngisor iki nganggo data anggota kelompokmu.</p>
+    </div>
+
+    <div class="members">
+      <div class="card member">
+        <img src="aldo.jpg" alt="Foto anggota 1">
+        <h3>Aldo Febrianto</h3><small>Anggota</small>
+      </div>
+      <div class="card member">
+        <img src="galang.jpg" alt="Foto anggota 2">
+        <h3>Galang diky p.</h3><small>Anggota</small>
+      </div>
+      <div class="card member">
+        <img src="michelo.jpg" alt="Foto anggota 3">
+        <h3>Michello Revinza</h3><small>Anggota</small>
+      </div>
+      <div class="card member">
+        <img src="https://placehold.co/600x600/16263b/ffffff?text=FOTO+4" alt="Foto anggota 4">
+        <h3>Muhammad Raffi</h3><small>Anggota</small>
+      </div>
+    </div>
+  </section>
+
+  <section id="profil">
+    <div class="section-title">
+      <div class="eyebrow">Kaca 02 • Profil</div>
+      <h2>Profil Pulau Merah</h2>
+      <p class="lead">
+        Pulau Merah minangka salah sawijining papan wisata alam sing misuwur ing Banyuwangi.
+      </p>
+    </div>
+
+    <div class="grid">
+      <article class="card">
+        <h3>📍 Panggonan</h3>
+        <p>
+          Pulau Merah dumunung ing Desa Sumberagung, Kecamatan Pesanggaran,
+          Kabupaten Banyuwangi, Jawa Timur. Panggonane ana ing sisih kidul Banyuwangi
+          lan kalebu kawasan wisata pesisir sing nduweni panorama segara sing apik.
+        </p>
+      </article>
+      <article class="card">
+        <h3>🌊 Kaendahan Alam</h3>
+        <p>
+          Ciri khas Pulau Merah yaiku ana bukit cilik sing wujude mbunder lan katon
+          cedhak karo garis pantai. Ing sakupenge ana pasir pantai, segara biru,
+          tetuwuhan ijo, lan ombak sing dadi daya tarik kanggo para wisatawan.
+        </p>
+      </article>
+    </div>
+
+    <div class="facts">
+      <div class="fact"><strong>Desa</strong>Sumberagung</div>
+      <div class="fact"><strong>Kecamatan</strong>Pesanggaran</div>
+      <div class="fact"><strong>Kabupaten</strong>Banyuwangi</div>
+      <div class="fact"><strong>Daya tarik</strong>Pantai & surfing</div>
+    </div>
+  </section>
+
+  <section id="observasi">
+    <div class="section-title">
+      <div class="eyebrow">Kaca 03 • Asil Observasi</div>
+      <h2>Asil Pengamatan</h2>
+    </div>
+
+    <div class="grid">
+      <article class="card">
+        <h3>🌴 Kondisi Lingkungan</h3>
+        <p>
+          Saka asil pengamatan, wilayah Pulau Merah nduweni lingkungan pesisir kanthi
+          pasir sing amba lan pemandangan segara sing mbukak. Bukit cilik ing tengah
+          segara dadi ciri khas sing gampang dikenali. Nalika banyu segara surut,
+          jarak antarane pantai lan bukit kasebut katon luwih cedhak.
+        </p>
+        <p>
+          Kaendahan alam kasebut ndadekake Pulau Merah cocok kanggo wisata, fotografi,
+          dolanan ing pantai, lan ngaso karo kulawarga. Supaya lingkungan tetep apik,
+          wisatawan kudu njaga karesikan lan ora mbuwang sampah sembarangan.
+        </p>
+      </article>
+
+      <article class="card">
+        <h3>🏄 Ombak lan Kegiatan</h3>
+        <p>
+          Pulau Merah uga dikenal minangka salah sawijining papan kanggo olahraga selancar.
+          Ombake cukup narik kawigaten para peselancar. Kajaba selancar, pengunjung bisa
+          mlaku-mlaku ing pinggir pantai, dolanan pasir, njupuk foto, piknik, lan
+          nikmati swasana srengenge surup.
+        </p>
+        <p>
+          Aktivitas wisata kasebut ora mung menehi hiburan, nanging uga bisa ndhukung
+          kegiatan ekonomi masyarakat ing sekitar kawasan wisata.
+        </p>
+      </article>
+
+      <article class="card">
+        <h3>🪨 Keunikan Geologi</h3>
+        <p>
+          Bukit Pulau Merah nduweni bentuk sing unik lan dadi unsur utama sing
+          mbedakake pantai iki saka pantai liyane. Ing kawasan iki uga ana bebatuan
+          sing nduweni nilai kanggo sinau babagan geologi lan proses pembentukan
+          bentang alam pesisir.
+        </p>
+      </article>
+
+      <article class="card">
+        <h3>👨‍👩‍👧‍👦 Paedah tumrap Masyarakat</h3>
+        <p>
+          Kawasan wisata bisa menehi kesempatan ekonomi tumrap masyarakat, kayata
+          dodolan panganan, suvenir, jasa parkir, penginapan, lan layanan wisata.
+          Mula, pangembangan wisata sing tertib kudu tetep nggatekake kelestarian
+          lingkungan lan kepentingan masyarakat lokal.
+        </p>
+      </article>
+    </div>
+
+    <div class="quote">
+      <strong>Cathetan observasi:</strong><br>
+      Pulau Merah ora mung nduweni kaendahan alam, nanging uga nduweni nilai
+      wisata, sosial, ekonomi, lan edukasi. Kaendahan kasebut kudu dijaga supaya
+      bisa dinikmati nganti generasi sabanjure.
+    </div>
+  </section>
+
+  <section id="kegiatan">
+    <div class="section-title">
+      <div class="eyebrow">Kaca 04 • Kegiatan</div>
+      <h2>Kegiatan Ing Pulau Merah</h2>
+      <p class="lead">Sawetara kegiatan sing bisa ditindakake nalika ana ing kawasan Pulau Merah.</p>
+    </div>
+
+    <div class="grid">
+      <article class="card"><h3>🏄 Selancar</h3><p>Ombak Pulau Merah dadi salah sawijining daya tarik kanggo para peselancar. Kegiatan iki kudu ditindakake kanthi nggatekake kondisi segara lan aturan keamanan.</p></article>
+      <article class="card"><h3>📸 Fotografi</h3><p>Pemandangan bukit, segara, pasir, lan srengenge surup bisa dadi obyek fotografi sing apik.</p></article>
+      <article class="card"><h3>🏖️ Dolanan Pantai</h3><p>Pengunjung bisa mlaku ing pasir, dolanan ing pinggir pantai, utawa mung nikmati swasana segara.</p></article>
+      <article class="card"><h3>🍜 Wisata Kuliner</h3><p>Pengunjung bisa tuku panganan lan omben-omben saka pedagang lokal. Kegiatan iki uga bisa ndhukung UMKM masyarakat sekitar.</p></article>
+      <article class="card"><h3>🌅 Nikmati Sunset</h3><p>Wektu sore dadi salah sawijining wektu sing disenengi amarga cahya srengenge surup nggawe swasana pantai katon luwih endah.</p></article>
+      <article class="card"><h3>♻️ Njaga Alam</h3><p>Wisatawan kudu nggawa sampah menyang panggonan sing wis disedhiyakake lan ora ngrusak tetuwuhan utawa lingkungan pesisir.</p></article>
+    </div>
+  </section>
+
+  <section id="galeri">
+    <div class="section-title">
+      <div class="eyebrow">Kaca 05 • Galeri</div>
+      <h2>Galeri Pulau Merah</h2>
+      <p class="lead">Foto referensi Pulau Merah saka sumber gambar ing internet.</p>
+    </div>
+
+    <div class="photo-grid">
+      <figure class="photo">
+        <img src="https://cdn1.tripoto.com/media/filter/nl/img/2380291/Image/1703250966_15267816168_aafda7df22_b.jpg.webp" alt="Pulau Merah kanthi bukit ijo">
+        <span>Pulau Merah saka pinggir pantai</span>
+      </figure>
+      <figure class="photo">
+        <img src="https://www.idtempatwisata.com/-ibF2opHqEH0/V4xhReDY76I/AAAAAAAACQY/2YJQZxCqw7g34ZnKUarIfThRPgE06i-JwCLcB/s1600/Payung-Pantai-Pulau-Merah.jpg" alt="Pantai Pulau Merah">
+        <span>Pantai lan bukit Pulau Merah</span>
+      </figure>
+      <figure class="photo">
+        <img src="https://cdn-jpr.jawapos.com/images/6/2025/06/30/IMG-20240513-WA0172-4128004322.jpg" alt="Bukit Pulau Merah">
+        <span>Bukit Pulau Merah</span>
+      </figure>
+    </div>
+
+    <p class="source">
+      Sumber foto: Tripoto, idtempatwisata.com, lan Radar Bojonegoro/Jawa Pos.
+      Yen tugasmu mbutuhake foto bebas lisensi, ganti gambar iki nganggo foto sing
+      duwe izin panggunaan utawa foto dokumentasi kelompokmu dhewe.
+    </p>
+  </section>
+
+  <section id="kesimpulan">
+    <div class="section-title">
+      <div class="eyebrow">Kaca 06 • Panutup</div>
+      <h2>Kesimpulan</h2>
+    </div>
+    <article class="card">
+      <p>
+        Adhedhasar asil observasi, Pulau Merah minangka salah sawijining destinasi
+        wisata alam ing Banyuwangi sing nduweni daya tarik utama berupa bukit cilik,
+        pantai pasir, segara, lan ombak sing cocog kanggo kegiatan selancar.
+        Panggonan iki uga nduweni potensi kanggo fotografi, rekreasi kulawarga,
+        lan kegiatan ekonomi masyarakat.
+      </p>
+      <br>
+      <p>
+        Miturut kelompok, kaendahan Pulau Merah kudu dijaga kanthi cara njaga
+        karesikan, ora ngrusak lingkungan, lan nggunakake fasilitas wisata kanthi
+        tanggung jawab. Kanthi mangkono, Pulau Merah bisa tetep dadi papan wisata
+        sing nyenengake lan migunani tumrap masyarakat.
+      </p>
+    </article>
+  </section>
+</main>
+
+<footer>
+  <p><strong>Observasi Pulau Merah</strong> • Tugas Basa Jawa Kelas IX</p>
+  <p>© 2026 Kelompok Observasi</p>
+</footer>
+
+</body>
+</html>
